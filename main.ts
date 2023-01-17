@@ -34,7 +34,7 @@ function recua () {
     while (recuar) {
         if (maqueen.readPatrol(maqueen.Patrol.PatrolLeft) == 0 || maqueen.readPatrol(maqueen.Patrol.PatrolRight) == 0) {
             maqueen.motorStop(maqueen.Motors.All)
-            basic.pause(500)
+            basic.pause(200)
             recuar = false
         }
     }
@@ -47,12 +47,11 @@ function procurar () {
     procurando = true
     basic.pause(500)
     while (procurando) {
-        if (maqueen.Ultrasonic(PingUnit.Centimeters) < 30) {
+        if (maqueen.Ultrasonic(PingUnit.Centimeters) < 35) {
             maqueen.motorStop(maqueen.Motors.All)
             basic.pause(200)
             maqueen.motorRun(maqueen.Motors.M1, maqueen.Dir.CCW, 80)
-            maqueen.motorRun(maqueen.Motors.M2, maqueen.Dir.CW, 80)
-            basic.pause(150)
+            basic.pause(350)
             encontrado = true
             procurando = false
         }
