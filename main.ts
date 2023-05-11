@@ -26,21 +26,7 @@ function empurra () {
         }
     }
 }
-function recua () {
-    maqueen.motorRun(maqueen.Motors.M1, maqueen.Dir.CCW, 150)
-    maqueen.motorRun(maqueen.Motors.M2, maqueen.Dir.CCW, 110)
-    basic.pause(500)
-    recuar = true
-    while (recuar) {
-        if (maqueen.readPatrol(maqueen.Patrol.PatrolLeft) == 0 || maqueen.readPatrol(maqueen.Patrol.PatrolRight) == 0) {
-            maqueen.motorStop(maqueen.Motors.All)
-            basic.pause(200)
-            recuar = false
-        }
-    }
-    maqueen.servoRun(maqueen.Servos.S1, 165)
-}
-function procurar () {
+function procura () {
     maqueen.motorRun(maqueen.Motors.M1, maqueen.Dir.CW, 100)
     maqueen.motorRun(maqueen.Motors.M2, maqueen.Dir.CCW, 100)
     contador = 0
@@ -63,15 +49,29 @@ function procurar () {
         contador += 1
     }
 }
+function recua () {
+    maqueen.motorRun(maqueen.Motors.M1, maqueen.Dir.CCW, 150)
+    maqueen.motorRun(maqueen.Motors.M2, maqueen.Dir.CCW, 110)
+    basic.pause(500)
+    recuar = true
+    while (recuar) {
+        if (maqueen.readPatrol(maqueen.Patrol.PatrolLeft) == 0 || maqueen.readPatrol(maqueen.Patrol.PatrolRight) == 0) {
+            maqueen.motorStop(maqueen.Motors.All)
+            basic.pause(200)
+            recuar = false
+        }
+    }
+    maqueen.servoRun(maqueen.Servos.S1, 165)
+}
+let recuar = false
 let procurando = false
 let contador = 0
-let recuar = false
 let empurrar = false
 let encontrado = false
 let activo = true
 while (activo) {
     encontrado = false
-    procurar()
+    procura()
     if (encontrado) {
         empurra()
         recua()
